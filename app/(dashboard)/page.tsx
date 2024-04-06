@@ -22,7 +22,7 @@ function Page() {
   const handlelogout = async () => {
     try {
       setLoading(true);
-      const resp = await axios.post("http://localhost:3000/api/users/logout");
+      const resp = await axios.post("https://next-auth-e2-e.vercel.app/api/users/logout");
       if (resp.status === 200) {
         router.push("/signin");
       }
@@ -36,7 +36,7 @@ function Page() {
     const getdata = async () => {
       try {
         setLoading(true);
-        const resp = await axios.get("http://localhost:3000/api/users/me");
+        const resp = await axios.get("https://next-auth-e2-e.vercel.app/api/users/me");
         if (resp.status === 200) {
           setData(resp.data.data);
           console.log(resp.data.data);
