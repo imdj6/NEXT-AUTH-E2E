@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  const isPublicPath =path === "/signin" || path === "/signup" || path === "/verifyemail";
+  const isPublicPath = ["/signin", "/signup", "/verifyemail"].includes(path);
 
   const token = request.cookies.get("token")?.value || "";
 
@@ -18,5 +18,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/", "/signin", "/signup", "/profile", "/verifyemail","/me"],
+  matcher: ["/", "/signin", "/signup", "/profile", "/me", "/verifyemail"],
 };

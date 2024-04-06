@@ -16,7 +16,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
     const salt = await bycyptjs.genSalt(10);
     const hashedPass = await bycyptjs.hash(password, salt);
     const newUser = new User({
@@ -26,7 +25,7 @@ export async function POST(request: NextRequest) {
     });
     const savedUser = await newUser.save();
     console.log(savedUser);
-    await sendEmail({ email, emaiType: "VERIFY", userId: savedUser._id });
+    await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });
     return NextResponse.json(
       { message: "user Registered Successfully", savedUser, success: true },
       { status: 200 }

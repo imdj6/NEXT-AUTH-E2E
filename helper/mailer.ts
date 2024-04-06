@@ -1,16 +1,19 @@
 import User from "@/models/userModel";
 import nodemailer from "nodemailer";
 import bycyptjs from "bcryptjs";
+import { v4 as uuidv4 } from 'uuid';
 export const sendEmail = async function ({ email, emailType, userId }: any) {
   try {
-    const hashedToken = await bycyptjs.hash(userId.toString(), 10);
+    const hashedToken = uuidv4();
+    console.log(hashedToken)
     if (emailType === "VERIFY") {
+      console.log("verify")
       await User.findByIdAndUpdate(userId, {
         $set: {
           verifyToken: hashedToken,
           verifyTokenExpiry: Date.now() + 3600000,
         },
-      });
+      },{ upsert: true });
     } else if (emailType === "RESET") {
       await User.findByIdAndUpdate(userId, {
         $set: {
