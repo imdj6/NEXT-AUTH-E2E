@@ -8,7 +8,7 @@ type datatype = {
   username: string;
   email: string;
 };
-function page() {
+function Page() {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   const [data, setData] = useState<datatype>({
@@ -79,4 +79,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
