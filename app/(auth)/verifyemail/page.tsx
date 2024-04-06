@@ -10,7 +10,7 @@ function Verifyemail() {
   const verifytoken = async () => {
     try {
       const resp = await axios.post(
-        "http://localhost:3000/api/users/verifyemail",
+        "https://next-auth-e2-e.vercel.app/api/users/verifyemail",
         { token }
       );
       if (resp.status === 200) {
