@@ -20,7 +20,7 @@ export default function Signin() {
     try {
       toastId = toast.loading("loading...");
       const resp = await axios.post(
-        "http://localhost:3000/api/users/login",
+        "https://next-auth-e2-e.vercel.app/api/users/login",
         data
       );
       if (resp.status === 200) {
