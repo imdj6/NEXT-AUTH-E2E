@@ -7,13 +7,13 @@ Connect();
 export async function GET(request: NextRequest) {
   try {
     const userId = await getdatafromtoken(request);
-    const user = User.findOne({ _id: userId }).select("-password");
+    const user = await User.findOne({ _id: userId }).select("-password");
 
     return NextResponse.json(
       { msg: "User Found", data: user },
       { status: 200 }
     );
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: "Not Authorized!" }, { status: 500 });
   }
 }
